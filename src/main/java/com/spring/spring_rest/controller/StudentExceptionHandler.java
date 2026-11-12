@@ -12,21 +12,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import com.spring.spring_rest.entity.StudentErrorResponse;
 import com.spring.spring_rest.exception.StudentNotFoundException;
 
-/**
- * Global exception handler for handling REST API exceptions across 
- * controllers.
- */
 @ControllerAdvice 
 public class StudentExceptionHandler {
 
-  /**
-   * Handles {@link StudentNotFoundException} when a requested student 
-   * cannot be found.
-   *
-   * @param ex the thrown {@link StudentNotFoundException}
-   * @return a {@link ResponseEntity} containing the error details and 
-   * HTTP 404 Not Found status
-   */
   @ExceptionHandler 
   public ResponseEntity<StudentErrorResponse> handleException(
     StudentNotFoundException ex
@@ -40,14 +28,6 @@ public class StudentExceptionHandler {
     return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
   }
 
-  /**
-   * Handles generic {@link Exception} instances thrown during request 
-   * processing.
-   *
-   * @param ex the thrown {@link Exception}
-   * @return a {@link ResponseEntity} containing the error details and 
-   * HTTP 400 Bad Request status
-   */
   @ExceptionHandler 
   public ResponseEntity<StudentErrorResponse> handleException(
     Exception ex
@@ -61,13 +41,6 @@ public class StudentExceptionHandler {
     return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
   }
 
-  /**
-   * Handles validation errors triggered by {@code @Valid} request bodies.
-   *
-   * @param ex the thrown {@link MethodArgumentNotValidException}
-   * @return a {@link ResponseEntity} containing a map of field names to 
-   * validation error messages and HTTP 400 Bad Request status
-   */
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public ResponseEntity<Map<String, String>> handleValidationException(
     MethodArgumentNotValidException ex

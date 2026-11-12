@@ -23,22 +23,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-/**
- * REST controller exposing CRUD endpoints for managing 
- * {@link Student} resources.
- */
+
 @RestController 
 @RequestMapping("/api/students")
 public class StudentRestController {
   private List<Student> theStudents;
   private StudentService studentService;
 
-  /**
-   * Constructs a {@code StudentRestController} with the specified 
-   * {@link StudentService}.
-   *
-   * @param studentService the service layer handling student business logic
-   */
   public StudentRestController(StudentService studentService) {
     this.studentService = studentService;
   }
@@ -52,24 +43,11 @@ public class StudentRestController {
   //   theStudents.add(new Student("Emma", "Baumgarten"));
   // }
 
-  /**
-   * Retrieves the in-memory list of students.
-   *
-   * @return a list of {@link Student} entities
-   */
   @GetMapping("/students")
   public List<Student> getStudents() {
     return theStudents;
   }
   
-  /**
-   * Retrieves a student from the in-memory list by index.
-   *
-   * @param studentId the index of the student in the list
-   * @return the matching {@link Student} entity
-   * @throws StudentNotFoundException if the index is negative or 
-   * out of bounds
-   */
   @GetMapping("/students/{studentId}")
   public Student getStudent(@PathVariable int studentId) {
     if (studentId >= theStudents.size() || (studentId < 0)) {
@@ -79,13 +57,7 @@ public class StudentRestController {
     return theStudents.get(studentId);
   }
   
-  /**
-   * Creates a new student record.
-   *
-   * @param theStudentDto the validated {@link StudentDto} payload
-   * @return a {@link ResponseEntity} containing the saved 
-   * {@link StudentDto} and HTTP 201 Created status
-   */
+  // add students REST API
   @PostMapping
   public ResponseEntity<StudentDto> createStudents(
     @Valid @RequestBody StudentDto theStudentDto
@@ -94,40 +66,21 @@ public class StudentRestController {
     return new ResponseEntity<>(saved, HttpStatus.CREATED);
   }
 
-  /**
-   * Retrieves a student by their unique database ID.
-   *
-   * @param id the unique identifier of the student
-   * @return a {@link ResponseEntity} containing the 
-   * {@link StudentDto} and HTTP 200 OK status
-   */
+  // get student REST API
   @GetMapping("{id}")
   public ResponseEntity<StudentDto> getStudentById(@PathVariable Long id) {
       StudentDto studentDto = studentService.getStudentById(id);
       return  ResponseEntity.ok(studentDto);
   }
 
-  /**
-   * Retrieves all persisted student records.
-   *
-   * @return a {@link ResponseEntity} containing a list of all 
-   * {@link StudentDto} objects and HTTP 200 OK status
-   */
+  // get all student REST API
   @GetMapping
   public ResponseEntity<List<StudentDto>> getAllStudents() {
     List<StudentDto> students = studentService.getAllStudents();
     return ResponseEntity.ok(students);
   }
 
-  /**
-   * Fully updates an existing student record by ID.
-   *
-   * @param id the unique identifier of the student to update
-   * @param theStudentDto the validated {@link StudentDto} containing 
-   * updated fields
-   * @return a {@link ResponseEntity} containing the updated 
-   * {@link StudentDto} and HTTP 200 OK status
-   */
+  // update student REST API
   @PutMapping("{id}")
   public ResponseEntity<StudentDto> updateStudent(
     @PathVariable Long id,
@@ -139,15 +92,7 @@ public class StudentRestController {
     return ResponseEntity.ok(studentDto);
   }
 
-  /**
-   * Partially updates an existing student record by ID.
-   *
-   * @param id the unique identifier of the student to patch
-   * @param theStudentDto the validated {@link StudentDto} 
-   * containing fields to modify
-   * @return a {@link ResponseEntity} containing the patched 
-   * {@link StudentDto} and HTTP 200 OK status
-   */
+  // patch student REST API
   @PatchMapping("{id}")
   public ResponseEntity<StudentDto> patchStudent(
     @PathVariable Long id,
@@ -157,13 +102,7 @@ public class StudentRestController {
     return ResponseEntity.ok(studentDto);
   }
 
-  /**
-   * Deletes a student record by ID.
-   *
-   * @param id the unique identifier of the student to delete
-   * @return a {@link ResponseEntity} containing a confirmation 
-   * message and HTTP 200 OK status
-   */
+  // delete student REST API
   @DeleteMapping("{id}")
   public ResponseEntity<String> deleteStudentById (@PathVariable Long id) {
     studentService.deleteStudentById(id);
