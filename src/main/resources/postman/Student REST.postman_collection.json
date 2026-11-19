@@ -222,7 +222,7 @@
           "body": "[\n  {\n    \"id\": 1,\n    \"email\": \"dexter.lauron@gmail.com\",\n    \"firstName\": \"Dexter\",\n    \"lastName\": \"Lauron\"\n  },\n  {\n    \"id\": 2,\n    \"email\": \"francis.chavez@gmail.com\",\n    \"firstName\": \"Francis\",\n    \"lastName\": \"Chavez\"\n  },\n  {\n    \"id\": 3,\n    \"email\": \"erl.montano@gmail.com\",\n    \"firstName\": \"Erl\",\n    \"lastName\": \"Montano\"\n  }\n]"
         },
         {
-          "name": "invalid_get_student",
+          "name": "invalid_int_get_student",
           "originalRequest": {
             "method": "GET",
             "header": [],
@@ -269,6 +269,15 @@
           "originalRequest": {
             "method": "GET",
             "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
             "url": {
               "raw": "http://localhost:8080/api/students/9",
               "protocol": "http",
@@ -283,8 +292,6 @@
               ]
             }
           },
-          "status": "OK",
-          "code": 200,
           "_postman_previewlanguage": "json",
           "header": [
             {
@@ -297,7 +304,7 @@
             },
             {
               "key": "Date",
-              "value": "Wed, 11 Nov 2026 08:16:06 GMT"
+              "value": "Thu, 19 Nov 2026 09:21:28 GMT"
             },
             {
               "key": "Keep-Alive",
@@ -309,7 +316,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n  \"status\": 0,\n  \"message\": \"Student ID 9 not found!\",\n  \"timeStamp\": 1794384966017\n}"
+          "body": "{\n  \"status\": 404,\n  \"message\": \"Student ID 9 not found!\",\n  \"timeStamp\": 1795080088336\n}"
         },
         {
           "name": "invalid_string_get_student",
@@ -788,7 +795,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8080/api/students/2",
+              "raw": "http://localhost:8080/api/students/3",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -797,12 +804,10 @@
               "path": [
                 "api",
                 "students",
-                "2"
+                "3"
               ]
             }
           },
-          "status": "OK",
-          "code": 200,
           "_postman_previewlanguage": "json",
           "header": [
             {
@@ -815,7 +820,7 @@
             },
             {
               "key": "Date",
-              "value": "Thu, 19 Nov 2026 07:07:28 GMT"
+              "value": "Thu, 19 Nov 2026 09:23:17 GMT"
             },
             {
               "key": "Keep-Alive",
@@ -827,7 +832,7 @@
             }
           ],
           "cookie": [],
-          "body": "{\n  \"status\": 0,\n  \"message\": \"Student ID 2 not found!\",\n  \"timeStamp\": 1795072048294\n}"
+          "body": "{\n  \"status\": 404,\n  \"message\": \"Student ID 3 not found!\",\n  \"timeStamp\": 1795080197473\n}"
         }
       ]
     },
@@ -908,62 +913,6 @@
           "body": "{\n  \"id\": 1,\n  \"email\": \"romel.lauron@gmail.com\",\n  \"firstName\": \"Romel\",\n  \"lastName\": \"Lauron\"\n}"
         },
         {
-          "name": "int_invalid_patch_student",
-          "originalRequest": {
-            "method": "PATCH",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"email\": \"romel.lauron@gmail.com\"\r\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/students/2",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "students",
-                "2"
-              ]
-            }
-          },
-          "status": "OK",
-          "code": 200,
-          "_postman_previewlanguage": "json",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "key": "Transfer-Encoding",
-              "value": "chunked"
-            },
-            {
-              "key": "Date",
-              "value": "Thu, 19 Nov 2026 07:10:47 GMT"
-            },
-            {
-              "key": "Keep-Alive",
-              "value": "timeout=60"
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            }
-          ],
-          "cookie": [],
-          "body": "{\n  \"status\": 0,\n  \"message\": \"Student ID 2 not found!\",\n  \"timeStamp\": 1795072247345\n}"
-        },
-        {
           "name": "string_invalid_patch_student",
           "originalRequest": {
             "method": "PATCH",
@@ -1014,6 +963,60 @@
           ],
           "cookie": [],
           "body": "{\n  \"status\": 400,\n  \"message\": \"Invalid data. Only integers are accepted\",\n  \"timeStamp\": 1795072285899\n}"
+        },
+        {
+          "name": "int_invalid_patch_student",
+          "originalRequest": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"romel.lauron@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "3"
+              ]
+            }
+          },
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 19 Nov 2026 09:23:48 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"status\": 404,\n  \"message\": \"Student ID 3 not found!\",\n  \"timeStamp\": 1795080228194\n}"
         }
       ]
     },
@@ -1103,62 +1106,6 @@
           "body": "Student deleted successfully!"
         },
         {
-          "name": "int_invalid_delete_student",
-          "originalRequest": {
-            "method": "DELETE",
-            "header": [],
-            "body": {
-              "mode": "raw",
-              "raw": "",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "url": {
-              "raw": "http://localhost:8080/api/students/2",
-              "protocol": "http",
-              "host": [
-                "localhost"
-              ],
-              "port": "8080",
-              "path": [
-                "api",
-                "students",
-                "2"
-              ]
-            }
-          },
-          "status": "OK",
-          "code": 200,
-          "_postman_previewlanguage": "json",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            },
-            {
-              "key": "Transfer-Encoding",
-              "value": "chunked"
-            },
-            {
-              "key": "Date",
-              "value": "Thu, 19 Nov 2026 07:18:41 GMT"
-            },
-            {
-              "key": "Keep-Alive",
-              "value": "timeout=60"
-            },
-            {
-              "key": "Connection",
-              "value": "keep-alive"
-            }
-          ],
-          "cookie": [],
-          "body": "{\n  \"status\": 0,\n  \"message\": \"Student ID 2 not found!\",\n  \"timeStamp\": 1795072721427\n}"
-        },
-        {
           "name": "string_invalid_delete_student",
           "originalRequest": {
             "method": "DELETE",
@@ -1209,6 +1156,60 @@
           ],
           "cookie": [],
           "body": "{\n  \"status\": 400,\n  \"message\": \"Invalid data. Only integers are accepted\",\n  \"timeStamp\": 1795072646537\n}"
+        },
+        {
+          "name": "int_invalid_delete_student",
+          "originalRequest": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/students/3",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8080",
+              "path": [
+                "api",
+                "students",
+                "3"
+              ]
+            }
+          },
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "Transfer-Encoding",
+              "value": "chunked"
+            },
+            {
+              "key": "Date",
+              "value": "Thu, 19 Nov 2026 09:24:36 GMT"
+            },
+            {
+              "key": "Keep-Alive",
+              "value": "timeout=60"
+            },
+            {
+              "key": "Connection",
+              "value": "keep-alive"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"status\": 404,\n  \"message\": \"Student ID 3 not found!\",\n  \"timeStamp\": 1795080276074\n}"
         }
       ]
     }
